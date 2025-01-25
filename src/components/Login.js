@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import "../styles/Login.css";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); 
+  const { register, handleSubmit, formState: { errors }, setError } = useForm();
+  const [error, setErrorState] = useState(""); // State to hold error message
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (username === "admin" && password === "password") {
+  const onSubmit = (data) => {
+    if (data.username === "admin" && data.password === "password") {
       navigate("/tasks");
     } else {
-      setError("Invalid username or password");
+      setErrorState("Invalid username or password");
     }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      if (username === "admin" && password === "password") {
-        navigate("/tasks");
-      } else {
-        setError("Invalid username or password");
-      }
+      handleSubmit(onSubmit)(); // Trigger submit when Enter key is pressed
     }
   };
 
@@ -30,22 +26,26 @@ const Login = () => {
     <div className="login-container">
       <div className="login-form">
         <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          onKeyDown={handleKeyPress}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={handleKeyPress}
-        />
-        {error && <div className="error-message">{error}</div>}
-        <button onClick={handleLogin}>Login</button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            placeholder="Username"
+            {...register("username", { required: "Username is required" })}
+            onKeyDown={handleKeyPress}
+          />
+          {errors.username && <div className="error-message">{errors.username.message}</div>}
+
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", { required: "Password is required" })}
+            onKeyDown={handleKeyPress}
+          />
+          {errors.password && <div className="error-message">{errors.password.message}</div>}
+
+          {error && <div className="error-message">{error}</div>}
+          <button type="submit">Login</button>
+        </form>
       </div>
     </div>
   );
