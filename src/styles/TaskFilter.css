@@ -1,0 +1,107 @@
+.task-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 15px 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  gap: 15px;
+}
+
+.filter-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.filter-header h2 {
+  font-size: 22px;
+  color: #333;
+  margin: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.filter-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.filter-button.active {
+  background-color: #007bff;
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .task-filter {
+    padding: 12px 15px 20px;
+    max-width: 95%;
+  }
+
+  .filter-header h2 {
+    font-size: 20px;
+  }
+
+  .filter-buttons {
+    gap: 8px;
+  }
+
+  .filter-button {
+    padding: 10px 15px;
+    font-size: 15px;
+    min-width: 100px;
+    max-width: 180px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .task-filter {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .filter-header h2 {
+    font-size: 18px;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .filter-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    min-width: auto;
+  }
+}
