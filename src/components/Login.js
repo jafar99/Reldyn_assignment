@@ -5,7 +5,7 @@ import "../styles/Login.css";
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm();
-  const [error, setErrorState] = useState(""); // State to hold error message
+  const [error, setErrorState] = useState(""); 
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSubmit(onSubmit)(); // Trigger submit when Enter key is pressed
+      handleSubmit(onSubmit)(); 
     }
   };
 
