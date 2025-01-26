@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    if (data.username === "admin" && data.password === "password") {
+    if (data.username === "admin" && data.password === "admin") {
       navigate("/tasks");
     } else {
       setErrorState("Invalid username or password");
